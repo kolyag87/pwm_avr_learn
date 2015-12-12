@@ -1,3 +1,5 @@
+//Code for Attiny 13
+
 #define F_CPU 16000000
 #define LED PB0
 #define LED1 PB1
@@ -69,7 +71,7 @@ int main (void)
         //200 is initial value - brightness control can be
         //implemented by decreasing or increasing this value.
         //Potentiometer to PB2 as ADC input will make this feature on.
-        //But it depends on the period for delay - think abuot it
+        //But it depends on the period for delay - think about it
         OCR0A = s;
         s = (int) s/4;
         _delay(s);
