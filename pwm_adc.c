@@ -3,7 +3,8 @@
 #define F_CPU 16000000
 #define LED PB0
 #define LED1 PB1
-#define LED2 PB2
+#define IN2 PB2
+#define LED3 PB3
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -64,8 +65,9 @@ void _delay(int ms) {
  
 int main (void)
 {
-    DDRB |= (1 << LED) | (1 << LED1);
-    DDRB &= ~(1 << LED2);
+    DDRB |= (1 << LED) | (1 << LED1) | (1 << LED3);
+    DDRB &= ~(1 << IN2);
+
     pwm_setup();
   
     while (1) {
@@ -81,5 +83,9 @@ int main (void)
         OCR0B = s1;
         s1 = (int) s1/4;
         _delay(s1);
+
+        if ((PINB & (1 << IN2)) != 0) 
+            PORTB |= (1 << LED3);
+        else PORTB &= ~(1 << LED3);
     }
 }
