@@ -3,6 +3,7 @@
 #define F_CPU 16000000
 #define LED PB0
 #define LED1 PB1
+#define LED2 PB2
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -64,6 +65,7 @@ void _delay(int ms) {
 int main (void)
 {
     DDRB |= (1 << LED) | (1 << LED1);
+    DDRB &= ~(1 << LED2);
     pwm_setup();
   
     while (1) {
